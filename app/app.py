@@ -1,15 +1,22 @@
+# Add imports (at the top)
 import seaborn as sns
 from faicons import icon_svg
+from shinyswatch import theme
 
 from shiny import reactive
 from shiny.express import input, render, ui
 import palmerpenguins 
 
+
 df = palmerpenguins.load_penguins()
 
-ui.page_opts(title="Penguins dashboard", fillable=True)
+# Add Title to page
+ui.page_opts(title="Palmer Penguins Dashboard", fillable=True)
 
+# Add a theme
+theme.darkly()
 
+#Add a sidebar
 with ui.sidebar(title="Filter controls"):
     ui.input_slider("mass", "Mass", 2000, 6000, 6000)
     ui.input_checkbox_group(
@@ -21,50 +28,50 @@ with ui.sidebar(title="Filter controls"):
     ui.hr()
     ui.h6("Links")
     ui.a(
-        "GitHub Source",
-        href="https://github.com/denisecase/cintel-07-tdash",
-        target="_blank",
+        "GitHub",
+        href="https://github.com/ryankrabbe/cintel-07-tdash",
+        target="_blank",style="color: yellow;"
     )
     ui.a(
-        "GitHub App",
-        href="https://denisecase.github.io/cintel-07-tdash/",
-        target="_blank",
+        "Ryan's Github App",
+        href="https://github.com/ryankrabbe/cintel-07-tdash",
+        target="_blank",style="color: yellow;"
     )
     ui.a(
-        "GitHub Issues",
-        href="https://github.com/denisecase/cintel-07-tdash/issues",
-        target="_blank",
+        "Ryan's GitHub Issues",
+        href="https://github.com/ryankrabbe/cintel-07-tdash/issues",
+        target="_blank",style="color: yellow;"
     )
-    ui.a("PyShiny", href="https://shiny.posit.co/py/", target="_blank")
+    ui.a("PyShiny", href="https://shiny.posit.co/py/", target="_blank",style="color: yellow;")
     ui.a(
         "Template: Basic Dashboard",
         href="https://shiny.posit.co/py/templates/dashboard/",
-        target="_blank",
+        target="_blank",style="color: yellow;"
     )
     ui.a(
         "See also",
         href="https://github.com/denisecase/pyshiny-penguins-dashboard-express",
-        target="_blank",
+        target="_blank",style="color: yellow;"
     )
 
-
+#Add Main Content
 with ui.layout_column_wrap(fill=False):
     with ui.value_box(showcase=icon_svg("earlybirds")):
-        "Number of penguins"
+        "Total penguins"
 
         @render.text
         def count():
             return filtered_df().shape[0]
 
     with ui.value_box(showcase=icon_svg("ruler-horizontal")):
-        "Average bill length"
+        "Avg bill length"
 
         @render.text
         def bill_length():
             return f"{filtered_df()['bill_length_mm'].mean():.1f} mm"
 
     with ui.value_box(showcase=icon_svg("ruler-vertical")):
-        "Average bill depth"
+        "Avg bill depth"
 
         @render.text
         def bill_depth():
