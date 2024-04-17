@@ -1,3 +1,6 @@
+![image](https://github.com/ryankrabbe/cintel-07-tdash/assets/161783561/77e0e2b8-1fa2-497b-864f-1db0a49b4f92)
+
+
 # PyShiny Basic Dashboard (Penguins)
 
 ## Tools
